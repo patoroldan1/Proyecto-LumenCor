@@ -44,7 +44,9 @@ export default function App() {
             {activeSection === 'editorial' && <EditorialSection />}
             {activeSection === 'viajes' && <ViajesSection />}
             {activeSection === 'donar' && <DonarSection />}
-            {activeSection === 'social' && <SocialSection />}
+            {activeSection === 'social' && (
+              <SocialSection onOpenVolunteerModal={() => setIsVolunteerModalOpen(true)} />
+              )}
             {activeSection === 'arte' && <ArteSection />}
             {activeSection === 'medios' && <MediosSection />}
           </main>

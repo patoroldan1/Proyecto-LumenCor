@@ -1,6 +1,6 @@
 {
-  "name": "Fundación Camino y Esperanza",
-  "description": "Portal web institucional para fundación de ayuda a personas en situación de calle, con editorial de libros, peregrinaciones, talleres de arte, donaciones y sala de prensa.",
+  "name": "Fundación LumenCor",
+  "description": "Portal web institucional para fundación de ayuda a personas en situación de calle, con editorial de libros, peregrinaciones, talleres de arte y donaciones.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

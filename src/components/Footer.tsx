@@ -59,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectSection }) => {
             </p>
             <button
               onClick={() => onSelectSection('donar')}
-              className="w-full flex items-center justify-center gap-2 py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-cinzel text-xs font-semibold rounded-xl uppercase tracking-wider transition-all shadow"
+              className="w-full flex items-center justify-center gap-2 py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-cinzel text-xs font-semibold rounded-xl uppercase tracking-wider transition-all shadow cursor-pointer"
             >
               <Heart className="w-3.5 h-3.5 fill-current" />
               <span>Donar Ahora</span>
