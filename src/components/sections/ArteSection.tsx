@@ -7,25 +7,21 @@ import React, { useState } from 'react';
 import { Artwork } from '../../types/index.ts';
 import { MOCK_ARTWORKS } from '../../data/mockData.ts';
 import { Palette, Sparkles, Heart, Eye, CheckCircle, X, Brush, Music, Compass } from 'lucide-react';
+import { SectionCtaBanner } from '../SectionCtaBanner.tsx';
+import { UniversalFormModal } from '../UniversalFormModal.tsx';
 
 export const ArteSection: React.FC = () => {
-  const [selectedArt, setSelectedArt] = useState<Artwork | null>(null);
-  const [artInquirySuccess, setArtInquirySuccess] = useState(false);
-  const [artInquiryData, setArtInquiryData] = useState({ name: '', email: '', message: '' });
+  const [selectedArtForDetail, setSelectedArtForDetail] = useState<Artwork | null>(null);
+  const [isArtModalOpen, setIsArtModalOpen] = useState(false);
+  const [selectedArtTitle, setSelectedArtTitle] = useState('');
 
-  const handleInquiry = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!artInquiryData.name || !artInquiryData.email) return;
-    setArtInquirySuccess(true);
+  // Función que abre el modal (puede ser general o sobre una obra específica)
+  const handleOpenArtInquiry = (artTitle: string = '') => {
+    setSelectedArtTitle(artTitle);
+    setIsArtModalOpen(true);
   };
 
-  const closeArtModal = () => {
-    setSelectedArt(null);
-    setArtInquirySuccess(false);
-    setArtInquiryData({ name: '', email: '', message: '' });
-  };
-
-return (
+  return (
     <div className="min-h-screen bg-[#faf8f5] text-stone-900 pb-20">
       {/* Hero Header */}
       <div className="relative bg-stone-900 text-stone-100 py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -50,8 +46,7 @@ return (
         </div>
       </div>
 
-
-      {/* Workshop categories cards */}
+      {/* Tarjetas de Categorías de Talleres */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-white p-6 rounded-3xl border border-stone-200 shadow-sm flex items-start gap-4">
@@ -59,107 +54,97 @@ return (
               <Brush className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="font-serif text-base font-bold text-stone-900">Pintura y Dibujo</h3>
-              <p className="text-xs text-stone-600 mt-1">Acuarela, óleo y muralismo comunitario para recuperar la expresión propia.</p>
+              <h4 className="font-serif text-base font-bold text-stone-900">Pintura y Expresión Visual</h4>
+              <p className="text-xs text-stone-500 mt-1">Acuarela, óleo y muralismo comunitario como herramientas de revinculación.</p>
             </div>
           </div>
-
           <div className="bg-white p-6 rounded-3xl border border-stone-200 shadow-sm flex items-start gap-4">
             <div className="p-3 bg-amber-100 text-amber-800 rounded-2xl">
               <Music className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="font-serif text-base font-bold text-stone-900">Música Popular y Canto</h3>
-              <p className="text-xs text-stone-600 mt-1">Clases de guitarra criolla, coro y ensamble instrumental los fines de semana.</p>
+              <h4 className="font-serif text-base font-bold text-stone-900">Música y Canto Coral</h4>
+              <p className="text-xs text-stone-500 mt-1">Ensamble musical del refugio, guitarra y percusión para generar comunidad.</p>
             </div>
           </div>
-
           <div className="bg-white p-6 rounded-3xl border border-stone-200 shadow-sm flex items-start gap-4">
             <div className="p-3 bg-amber-100 text-amber-800 rounded-2xl">
               <Sparkles className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="font-serif text-base font-bold text-stone-900">Oficios y Luthería</h3>
-              <p className="text-xs text-stone-600 mt-1">Encuadernación artesanal y restauración con salida laboral concreta.</p>
+              <h4 className="font-serif text-base font-bold text-stone-900">Cerámica y Oficios</h4>
+              <p className="text-xs text-stone-500 mt-1">Alfarería, carpintería básica y encuadernación artesanal.</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Art Gallery */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 space-y-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-200 pb-4">
-          <div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
-              Galería de Obras y Creaciones
-            </h2>
-            <p className="text-xs sm:text-sm text-stone-600">
-              Cada obra tiene detrás una historia de superación. Los fondos por la adquisición van íntegramente al autor y al fondo de materiales del taller.
-            </p>
-          </div>
+      {/* Galería de Obras */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 space-y-8">
+        <div className="text-center max-w-2xl mx-auto">
+          <span className="text-xs font-semibold text-amber-700 uppercase tracking-widest font-cinzel">
+            Galería Solidaria
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1">
+            Obras Realizadas en Nuestros Hogares
+          </h2>
+          <p className="text-xs text-stone-500 mt-2 font-light">
+            Cada obra refleja una historia de superación. Al colaborar adquiriendo una pieza, financiás los materiales del taller y apoyás directamente a sus autores.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {MOCK_ARTWORKS.map((art) => (
             <div
               key={art.id}
-              className="bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer"
-              onClick={() => setSelectedArt(art)}
+              className="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
-                <div className="h-64 bg-stone-100 relative overflow-hidden">
+                <div
+                  onClick={() => setSelectedArtForDetail(art)}
+                  className="h-72 bg-stone-100 relative overflow-hidden cursor-pointer"
+                >
                   <img
                     src={art.imageUrl}
                     alt={art.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute top-3 right-3">
-                    <span
-                      className={`text-[10px] font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm shadow ${
-                        art.available
-                          ? 'bg-emerald-600/90 text-white'
-                          : 'bg-stone-900/80 text-stone-300'
-                      }`}
-                    >
-                      {art.available ? 'Disponible' : 'Colección / Vendida'}
+                  <div className="absolute inset-0 bg-stone-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="p-2.5 bg-white text-stone-900 rounded-full shadow-lg">
+                      <Eye className="w-4 h-4" />
                     </span>
                   </div>
+                  <span className="absolute bottom-3 left-3 bg-stone-900/80 backdrop-blur-sm text-white text-[11px] px-2.5 py-0.5 rounded-full">
+                    {art.technique}
+                  </span>
                 </div>
 
                 <div className="p-5 space-y-2">
-                  <span className="text-[11px] font-semibold text-amber-700 tracking-wider block font-cinzel">
-                    {art.artistName}
-                  </span>
-                  <h3 className="font-serif text-lg font-bold text-stone-900 line-clamp-1 group-hover:text-amber-800 transition-colors">
+                  <h3
+                    onClick={() => setSelectedArtForDetail(art)}
+                    className="font-serif text-lg font-bold text-stone-900 group-hover:text-amber-800 transition-colors cursor-pointer"
+                  >
                     {art.title}
                   </h3>
-                  <p className="text-xs text-stone-500">
-                    {art.technique} • {art.dimensions}
-                  </p>
-                  <p className="text-xs text-stone-600 line-clamp-2 leading-relaxed pt-1">
-                    {art.artistStory}
+                  <p className="text-xs text-stone-500 font-medium">Por {art.artist} ({art.year})</p>
+                  <p className="text-xs text-stone-600 line-clamp-2 leading-relaxed">
+                    {art.description}
                   </p>
                 </div>
               </div>
 
-              <div className="p-5 pt-0 border-t border-stone-100 mt-2 flex items-center justify-between">
+              <div className="p-5 pt-0 border-t border-stone-100 flex items-center justify-between mt-2">
                 <div>
-                  <span className="text-[10px] text-stone-400 uppercase font-semibold block">Valor Solidario</span>
+                  <span className="text-[10px] text-stone-400 uppercase font-medium block">Contribución sugerida</span>
                   <span className="font-serif text-lg font-bold text-stone-900">
                     ${art.price.toLocaleString('es-AR')}
                   </span>
                 </div>
-
                 <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedArt(art);
-                  }}
-                  className="p-2 text-stone-600 hover:text-white hover:bg-stone-900 rounded-xl transition-all"
-                  aria-label="Ver obra ampliada y su historia"
+                  onClick={() => handleOpenArtInquiry(art.title)}
+                  className="px-4 py-2 bg-stone-900 hover:bg-amber-600 text-white font-cinzel text-xs font-semibold rounded-xl uppercase tracking-wider transition-all cursor-pointer"
                 >
-                  <Eye className="w-4 h-4" />
+                  Consultar Obra
                 </button>
               </div>
             </div>
@@ -167,99 +152,87 @@ return (
         </div>
       </div>
 
-      {/* Art Modal */}
-      {selectedArt && (
+      {/* Banner Plantilla: SectionCtaBanner para Arte */}
+      <SectionCtaBanner
+        badgeText="Cultura y Talleres Solidarios"
+        badgeIcon={<Palette className="w-3.5 h-3.5" />}
+        title="¿Sos artista o querés colaborar con los talleres de arte?"
+        description="Sumate como tallerista voluntario o coordiná una donación de insumos de pintura, dibujo y cerámica para los hogares de LumenCor."
+        buttonText="Participar en Arte"
+        buttonIcon={<Palette className="w-4 h-4" />}
+        onAction={() => handleOpenArtInquiry('')}
+      />
+
+      {/* Modal Universal para Arte (Solo pide Nombre, Email y Teléfono) */}
+      <UniversalFormModal
+        isOpen={isArtModalOpen}
+        onClose={() => setIsArtModalOpen(false)}
+        seccion="arte"
+        badgeText="Arte LumenCor"
+        badgeIcon={<Palette className="w-3.5 h-3.5" />}
+        title={selectedArtTitle ? `Consulta sobre: ${selectedArtTitle}` : "Sumarme al Área de Arte"}
+        submitButtonText="Enviar Mensaje"
+        successTitle="¡Mensaje Recibido!"
+        successDescription={({ name, phone, email }) =>
+          `Muchas gracias, ${name}. El equipo del Taller de Arte de LumenCor se comunicará con vos al ${phone || email} para coordinar la consulta.`
+        }
+      />
+
+      {/* Modal de Detalle de Obra (para ver la imagen grande) */}
+      {selectedArtForDetail && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
           <div className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden border border-stone-200">
             <button
-              onClick={closeArtModal}
-              className="absolute top-4 right-4 z-10 p-2 bg-stone-900/60 hover:bg-stone-900 text-white rounded-full transition-colors"
+              onClick={() => setSelectedArtForDetail(null)}
+              className="absolute top-4 right-4 z-10 p-2 bg-stone-900/60 hover:bg-stone-900 text-white rounded-full transition-colors cursor-pointer"
+              aria-label="Cerrar modal"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="grid grid-cols-1 md:grid-cols-2">
-              <div className="h-64 md:h-full bg-stone-100">
+              <div className="h-64 md:h-full bg-stone-100 relative">
                 <img
-                  src={selectedArt.imageUrl}
-                  alt={selectedArt.title}
+                  src={selectedArtForDetail.imageUrl}
+                  alt={selectedArtForDetail.title}
                   className="w-full h-full object-cover"
                 />
               </div>
 
               <div className="p-6 md:p-8 flex flex-col justify-between space-y-4">
-                {artInquirySuccess ? (
-                  <div className="text-center py-8 space-y-3">
-                    <CheckCircle className="w-12 h-12 text-emerald-500 mx-auto" />
-                    <h4 className="font-serif text-xl font-bold text-stone-900">
-                      ¡Consulta Enviada!
-                    </h4>
-                    <p className="text-xs text-stone-600">
-                      Nos pondremos en contacto contigo a la brevedad para coordinar la entrega o visita al taller del autor.
-                    </p>
-                    <button
-                      onClick={closeArtModal}
-                      className="px-6 py-2 bg-stone-900 text-white text-xs font-semibold rounded-xl font-cinzel"
-                    >
-                      Cerrar
-                    </button>
+                <div className="space-y-3">
+                  <span className="text-xs font-semibold text-amber-700 uppercase tracking-widest font-cinzel">
+                    {selectedArtForDetail.technique}
+                  </span>
+                  <h3 className="font-serif text-2xl font-bold text-stone-900">
+                    {selectedArtForDetail.title}
+                  </h3>
+                  <p className="text-xs text-stone-500 font-medium">Autor: {selectedArtForDetail.artist} ({selectedArtForDetail.year})</p>
+                  <p className="text-sm text-stone-700 leading-relaxed pt-2">
+                    {selectedArtForDetail.description}
+                  </p>
+                  <p className="text-xs text-stone-400">Dimensiones: {selectedArtForDetail.dimensions}</p>
+                </div>
+
+                <div className="pt-4 border-t border-stone-200 flex items-center justify-between">
+                  <div>
+                    <span className="text-[11px] text-stone-400 block uppercase">Contribución</span>
+                    <span className="font-serif text-2xl font-bold text-stone-900">
+                      ${selectedArtForDetail.price.toLocaleString('es-AR')}
+                    </span>
                   </div>
-                ) : (
-                  <>
-                    <div className="space-y-3">
-                      <span className="text-xs font-semibold text-amber-700 tracking-wider uppercase font-cinzel">
-                        Obra de {selectedArt.artistName}
-                      </span>
-                      <h3 className="font-serif text-2xl font-bold text-stone-900 leading-tight">
-                        {selectedArt.title}
-                      </h3>
-                      <div className="text-xs text-stone-500 space-y-0.5">
-                        <p><span className="text-stone-400">Técnica:</span> {selectedArt.technique}</p>
-                        <p><span className="text-stone-400">Medidas:</span> {selectedArt.dimensions}</p>
-                        <p><span className="text-stone-400">Año:</span> {selectedArt.year}</p>
-                      </div>
 
-                      <div className="bg-amber-50/70 p-3 rounded-xl border border-amber-200 text-xs text-stone-700 leading-relaxed">
-                        <span className="font-bold text-amber-900 block text-[11px] mb-1">Historia del Autor:</span>
-                        {selectedArt.artistStory}
-                      </div>
-                    </div>
-
-                    <div className="pt-4 border-t border-stone-200">
-                      <div className="flex justify-between items-center mb-3">
-                        <span className="text-xs text-stone-500">Valor Solidario:</span>
-                        <span className="font-serif text-2xl font-bold text-stone-900">
-                          ${selectedArt.price.toLocaleString('es-AR')}
-                        </span>
-                      </div>
-
-                      <form onSubmit={handleInquiry} className="space-y-2">
-                        <input
-                          type="text"
-                          required
-                          placeholder="Tu Nombre"
-                          value={artInquiryData.name}
-                          onChange={(e) => setArtInquiryData({ ...artInquiryData, name: e.target.value })}
-                          className="w-full px-3 py-1.5 text-xs bg-stone-50 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-500"
-                        />
-                        <input
-                          type="email"
-                          required
-                          placeholder="Tu Correo Electrónico"
-                          value={artInquiryData.email}
-                          onChange={(e) => setArtInquiryData({ ...artInquiryData, email: e.target.value })}
-                          className="w-full px-3 py-1.5 text-xs bg-stone-50 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-500"
-                        />
-                        <button
-                          type="submit"
-                          className="w-full py-2.5 bg-stone-900 hover:bg-amber-600 text-white font-cinzel text-xs font-semibold rounded-xl uppercase tracking-wider transition-all"
-                        >
-                          Adquirir o Consultar por esta Obra
-                        </button>
-                      </form>
-                    </div>
-                  </>
-                )}
+                  <button
+                    onClick={() => {
+                      const title = selectedArtForDetail.title;
+                      setSelectedArtForDetail(null);
+                      handleOpenArtInquiry(title);
+                    }}
+                    className="px-5 py-2.5 bg-stone-900 hover:bg-amber-600 text-white font-cinzel text-xs font-semibold rounded-xl uppercase tracking-wider transition-all cursor-pointer"
+                  >
+                    Consultar Obra
+                  </button>
+                </div>
               </div>
             </div>
           </div>
