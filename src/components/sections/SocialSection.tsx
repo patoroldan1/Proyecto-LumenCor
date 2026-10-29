@@ -74,7 +74,7 @@ export const SocialSection: React.FC = () => {
           <div className="pt-2">
             <button
               onClick={() => setShowVolunteerModal(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-400 text-stone-950 font-cinzel font-semibold text-xs tracking-wider uppercase rounded-full shadow-lg transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-400 text-stone-950 font-cinzel font-semibold text-xs tracking-wider uppercase rounded-full shadow-lg transition-all hover:scale-105 cursor-pointer "
             >
               <Heart className="w-4 h-4 fill-current" />
               <span>Sumarme como Voluntario</span>
@@ -173,28 +173,6 @@ export const SocialSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Emergency Alert Hotline info */}
-        <div className="bg-amber-50 rounded-3xl p-6 sm:p-8 border border-amber-200 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-amber-500 text-stone-950 rounded-2xl">
-              <PhoneCall className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="font-serif text-lg font-bold text-stone-900">
-                ¿Viste a alguien durmiendo en la calle con frío o descompensado?
-              </h4>
-              <p className="text-xs text-stone-600">
-                Línea Social gratuita las 24 horas: comunicate al 108 (CABA) o enviá un WhatsApp a nuestra guardia nocturna.
-              </p>
-            </div>
-          </div>
-          <a
-            href="tel:108"
-            className="flex-none px-6 py-2.5 bg-stone-900 hover:bg-stone-800 text-white font-cinzel text-xs font-semibold uppercase tracking-wider rounded-xl"
-          >
-            Llamar al 108
-          </a>
-        </div>
       </div>
 
       {/* Volunteer Modal */}

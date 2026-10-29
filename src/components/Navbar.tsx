@@ -4,7 +4,6 @@
  */
 
 import React, { useState } from 'react';
-import { LumenCorLogo } from './LumenCorLogo.tsx';
 import { SectionId } from '../types/index.ts';
 import { SECTIONS_CONFIG } from '../data/mockData.ts';
 import {
@@ -20,14 +19,18 @@ import {
   Tv,
 } from 'lucide-react';
 
+import { LumenCorLogo } from './LumenCorLogo.tsx';
+
 interface NavbarProps {
   activeSection: SectionId;
   onSelectSection: (section: SectionId) => void;
+  onOpenVolunteerModal?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   activeSection,
   onSelectSection,
+  onOpenVolunteerModal,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -57,23 +60,20 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="sticky top-0 z-40 bg-stone-900/95 backdrop-blur-md border-b border-stone-800 text-stone-100 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Left: Brand + Quick Back to Home */}
-        <div className="flex items-center gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        {/* Izquierda: Botón Volver a HOME */}
+        <div className="flex items-center gap-2 sm:gap-4">
           <button
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-2 group px-3 py-1.5 rounded-lg bg-stone-800/80 hover:bg-red-600/20 text-stone-300 hover:text-red-300 border border-stone-700/60 transition-all cursor-pointer"
-            title="Volver a la pantalla principal (HOME)"
-            aria-label="Volver a la pantalla principal"
+            className="flex items-center gap-1.5 sm:gap-2 group px-2.5 sm:px-3 py-1.5 rounded-lg bg-stone-800/80 hover:bg-red-600/20 active:scale-95 text-stone-300 hover:text-red-300 border border-stone-700/60 transition-all duration-200 cursor-pointer touch-manipulation"
+            title="Volver a HOME"
           >
-            {/* Ícono de la casita en el rojo oficial de LumenCor */}
             <Home className="w-4 h-4 text-[#E30613] group-hover:-translate-x-0.5 transition-transform" />
             <span className="font-cinzel text-xs font-semibold tracking-wider">HOME</span>
           </button>
 
           <div className="hidden sm:block h-5 w-[1px] bg-stone-700" />
 
-          {/* Logo oficial de LumenCor en tamaño pequeño y versión clara */}
           <button
             onClick={() => handleNavClick('home')}
             className="text-left hidden sm:block focus:outline-none cursor-pointer"
@@ -82,8 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </div>
 
-        {/* Center: Desktop Navigation Buttons */}
-        {/* Centro: Botones de navegación (Social, Editorial, Viajes, Arte, Medios) */}
+        {/* Centro: Botones en Escritorio */}
         <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
           {(['social', 'editorial', 'viajes', 'arte', 'medios'] as SectionId[]).map((id) => {
             const sec = SECTIONS_CONFIG.find((s) => s.id === id);
@@ -109,63 +108,58 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Derecha: Botón Donar rosa y a su derecha el Carrito */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* Único botón de Donar (el rosa/rojo destacado) */}
+        {/* Derecha: Botones Voluntario, Donar y Menú Hamburguesa */}
+        <div className="flex items-center gap-1.5 sm:gap-3 flex-none">
+          {/* Botón Voluntario (en tablets y desktop) */}
+          <button
+            onClick={onOpenVolunteerModal || (() => handleNavClick('social'))}
+            className="hidden sm:flex items-center gap-1.5 text-xs sm:text-sm font-semibold bg-amber-500 hover:bg-amber-400 active:scale-95 active:bg-amber-500 text-stone-950 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-pointer font-sans whitespace-nowrap touch-manipulation"
+            aria-label="Sumarme como Voluntario"
+          >
+            <Users className="w-3.5 h-3.5 animate-pulse" />
+            <span>Sumarme como Voluntario</span>
+          </button>
+
+          {/* Botón Donar con animación activa y pulso */}
           <button
             onClick={() => handleNavClick('donar')}
-            className={`
-              flex items-center gap-2 px-4 py-2 rounded-full text-xs font-cinzel tracking-wider uppercase font-semibold transition-all shadow cursor-pointer
-              ${
-                activeSection === 'donar'
-                  ? 'bg-rose-600 text-white ring-2 ring-rose-400'
-                  : 'bg-rose-600/90 hover:bg-rose-600 text-white hover:shadow-rose-900/40 hover:scale-105'
-              }
-            `}
+            className={`flex items-center gap-1 text-xs sm:text-sm font-semibold bg-[#E30613] hover:bg-red-700 active:scale-95 active:bg-red-800 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-pointer font-sans whitespace-nowrap touch-manipulation ${
+              activeSection === 'donar' ? 'ring-2 ring-red-400' : ''
+            }`}
+            aria-label="Donar"
           >
-            <Heart className="w-4 h-4 fill-current animate-pulse" />
+            <Heart className="w-3.5 h-3.5 fill-current animate-pulse" />
             <span>Donar</span>
           </button>
 
-          
-
-          {/* Menú hamburguesa para celulares */}
+          {/* Botón Menú Hamburguesa en Mobile */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-stone-300 hover:text-white hover:bg-stone-800 focus:outline-none"
+            className="lg:hidden p-2 rounded-lg text-stone-200 hover:text-white active:scale-90 bg-stone-800/80 hover:bg-stone-800 border border-stone-700/60 focus:outline-none cursor-pointer flex-none flex items-center justify-center ml-0.5 transition-transform touch-manipulation"
             aria-label="Abrir menú de navegación"
             aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 text-amber-400" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Menú Desplegable Mobile (SIN el botón repetido de Donar) */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-stone-950 border-b border-stone-800 px-4 pt-3 pb-6 space-y-2 animate-fade-in shadow-xl">
-          <div className="flex items-center justify-between pb-3 border-b border-stone-800">
-            <span className="text-xs font-semibold text-stone-400 uppercase tracking-widest font-cinzel">
-              Navegar a otra sección:
-            </span>
-            <button
-              onClick={() => handleNavClick('home')}
-              className="flex items-center gap-1 text-xs text-amber-400 font-medium"
-            >
-              <Home className="w-3.5 h-3.5" />
-              <span>Volver a HOME</span>
-            </button>
-          </div>
+        <div className="lg:hidden bg-stone-950 border-b border-stone-800 px-4 pt-3 pb-6 space-y-3 animate-fade-in shadow-xl">
+          
 
           <div className="grid grid-cols-2 gap-2 pt-2">
-            {SECTIONS_CONFIG.map((sec) => {
+            {(['social', 'editorial', 'viajes', 'arte', 'medios'] as SectionId[]).map((id) => {
+              const sec = SECTIONS_CONFIG.find((s) => s.id === id);
+              if (!sec) return null;
               const isActive = activeSection === sec.id;
               return (
                 <button
                   key={sec.id}
                   onClick={() => handleNavClick(sec.id)}
                   className={`
-                    flex items-center justify-between p-3 rounded-xl text-left transition-all
+                    flex items-center justify-between p-3 rounded-xl text-left transition-all active:scale-95 cursor-pointer touch-manipulation
                     ${
                       isActive
                         ? 'bg-amber-500/20 border border-amber-500/50 text-amber-300 font-semibold'
@@ -185,13 +179,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </div>
 
-          <div className="pt-3">
+          {/* Único botón de acción en el drawer: Sumarme como Voluntario */}
+          <div className="pt-2">
             <button
-              onClick={() => handleNavClick('donar')}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-cinzel font-semibold text-sm tracking-wider uppercase shadow-lg"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (onOpenVolunteerModal) onOpenVolunteerModal();
+                else handleNavClick('social');
+              }}
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 active:scale-95 active:bg-amber-400 text-stone-950 font-sans font-semibold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer touch-manipulation"
             >
-              <Heart className="w-4 h-4 fill-current" />
-              <span>Hacer una Donación</span>
+              <Users className="w-4 h-4 animate-pulse" />
+              <span>Sumarme como Voluntario</span>
             </button>
           </div>
         </div>

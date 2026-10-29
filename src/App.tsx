@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { SectionId } from './types/index.ts';
 import { HomeHeroGrid } from './components/HomeHeroGrid.tsx';
 import { Navbar } from './components/Navbar.tsx';
 import { Footer } from './components/Footer.tsx';
+import { VolunteerModal } from './components/VolunteerModal.tsx';
 
 // Secciones
 import { EditorialSection } from './components/sections/EditorialSection.tsx';
@@ -14,8 +15,9 @@ import { MediosSection } from './components/sections/MediosSection.tsx';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<SectionId>('home');
+  const [isVolunteerModalOpen, setIsVolunteerModalOpen] = useState(false);
 
-  // Navegación hacia arriba al cambiar de pantalla
+  // Navegación
   const handleSelectSection = (section: SectionId) => {
     setActiveSection(section);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -23,15 +25,19 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#f5f1eb] font-sans antialiased selection:bg-amber-200 selection:text-stone-900">
-      {/* VISTA 1: HOME (Grilla de 6 botones que entra en 100% de la pantalla) */}
+      {/* VISTA 1: HOME */}
       {activeSection === 'home' ? (
-        <HomeHeroGrid onSelectSection={handleSelectSection} />
+        <HomeHeroGrid
+          onSelectSection={handleSelectSection}
+          onOpenVolunteerModal={() => setIsVolunteerModalOpen(true)}
+        />
       ) : (
-        /* VISTA 2: SECCIONES INTERNAS (Con barra de navegación fija y pie de página) */
+        /* VISTA 2: SECCIONES INTERNAS */
         <div className="flex flex-col min-h-screen">
           <Navbar
             activeSection={activeSection}
             onSelectSection={handleSelectSection}
+            onOpenVolunteerModal={() => setIsVolunteerModalOpen(true)}
           />
 
           <main className="flex-1">
@@ -46,6 +52,12 @@ export default function App() {
           <Footer onSelectSection={handleSelectSection} />
         </div>
       )}
+
+      {/* Formulario de Voluntario accesible desde cualquier botón */}
+      <VolunteerModal
+        isOpen={isVolunteerModalOpen}
+        onClose={() => setIsVolunteerModalOpen(false)}
+      />
     </div>
   );
 }
