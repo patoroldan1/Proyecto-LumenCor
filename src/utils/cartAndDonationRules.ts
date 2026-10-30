@@ -33,7 +33,7 @@ export function calculateCartSummary(items: CartItem[], freeShippingThreshold = 
  */
 export function calculateDonationImpact(amount: number) {
   // $1000 provides 1 warm meal
-  const meals = Math.max(1, Math.floor(amount / 1000));
+  const meals = amount <= 0 ? 0 : Math.max(1, Math.floor(amount / 1000));
   // $5000 provides a hygiene kit
   const hygieneKits = Math.floor(amount / 5000);
   // $15000 provides a night of shelter + hot shower + clean clothing
@@ -50,8 +50,8 @@ export function calculateDonationImpact(amount: number) {
  * Validates donor email and amount
  */
 export function validateDonationInput(amount: number, email: string): { isValid: boolean; error?: string } {
-  if (isNaN(amount) || amount <= 0) {
-    return { isValid: false, error: 'El monto de la donación debe ser mayor a 0.' };
+  if (isNaN(amount) || amount < 500) {
+    return { isValid: false, error: 'El monto mínimo para donar es de $500 pesos.' };
   }
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!email || !emailRegex.test(email)) {

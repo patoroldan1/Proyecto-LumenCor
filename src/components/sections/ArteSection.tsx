@@ -46,39 +46,7 @@ export const ArteSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Tarjetas de Categorías de Talleres */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white p-6 rounded-3xl border border-stone-200 shadow-sm flex items-start gap-4">
-            <div className="p-3 bg-amber-100 text-amber-800 rounded-2xl">
-              <Brush className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="font-serif text-base font-bold text-stone-900">Pintura y Expresión Visual</h4>
-              <p className="text-xs text-stone-500 mt-1">Acuarela, óleo y muralismo comunitario como herramientas de revinculación.</p>
-            </div>
-          </div>
-          <div className="bg-white p-6 rounded-3xl border border-stone-200 shadow-sm flex items-start gap-4">
-            <div className="p-3 bg-amber-100 text-amber-800 rounded-2xl">
-              <Music className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="font-serif text-base font-bold text-stone-900">Música y Canto Coral</h4>
-              <p className="text-xs text-stone-500 mt-1">Ensamble musical del refugio, guitarra y percusión para generar comunidad.</p>
-            </div>
-          </div>
-          <div className="bg-white p-6 rounded-3xl border border-stone-200 shadow-sm flex items-start gap-4">
-            <div className="p-3 bg-amber-100 text-amber-800 rounded-2xl">
-              <Sparkles className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="font-serif text-base font-bold text-stone-900">Cerámica y Oficios</h4>
-              <p className="text-xs text-stone-500 mt-1">Alfarería, carpintería básica y encuadernación artesanal.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      
       {/* Galería de Obras */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 space-y-8">
         <div className="text-center max-w-2xl mx-auto">

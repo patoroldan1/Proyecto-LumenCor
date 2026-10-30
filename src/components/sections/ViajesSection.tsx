@@ -50,10 +50,10 @@ export const ViajesSection: React.FC = () => {
         <div className="relative max-w-5xl mx-auto text-center space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs tracking-widest font-cinzel uppercase">
             <Compass className="w-3.5 h-3.5" />
-            <span>Peregrinaciones y Caminos de Encuentro</span>
+            <span>Viaja Con Nosotros</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl font-semibold tracking-tight text-white">
-            Viajes con Sentido Humano y Espiritual
+            Peregrinaciones a Todo el Mundo
           </h1>
           <p className="max-w-2xl mx-auto text-stone-300 text-sm sm:text-base font-light leading-relaxed">
             Viajar como peregrinos, no como meros turistas: con el corazón abierto al asombro, la fraternidad compartida y el compromiso solidario.

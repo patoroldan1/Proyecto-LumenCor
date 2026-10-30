@@ -129,7 +129,7 @@ export const MediosSection: React.FC = () => {
 
       {/* Banner Plantilla: SectionCtaBanner para Medios */}
       <SectionCtaBanner
-        badgeText="Prensa y Relaciones Institucionales"
+        badgeText="Medios LumenCor"
         badgeIcon={<Tv className="w-3.5 h-3.5" />}
         title="¿Sos periodista o querés coordinar una nota con la fundación?"
         description="Brindamos información de primera mano sobre la realidad de la calle, gacetillas, testimonios y coordinamos entrevistas con voceros de LumenCor."
@@ -143,7 +143,7 @@ export const MediosSection: React.FC = () => {
         isOpen={isPressModalOpen}
         onClose={() => setIsPressModalOpen(false)}
         seccion="medios"
-        badgeText="Prensa LumenCor"
+        badgeText="Medios LumenCor"
         badgeIcon={<Tv className="w-3.5 h-3.5" />}
         title="Contacto para Medios y Prensa"
         submitButtonText="Enviar Consulta"

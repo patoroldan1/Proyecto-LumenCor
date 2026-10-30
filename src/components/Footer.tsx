@@ -67,9 +67,6 @@ export const Footer: React.FC<FooterProps> = ({ onSelectSection }) => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-stone-800 flex flex-col sm:flex-row items-center justify-between text-stone-500 gap-4">
-          <p>© {new Date().getFullYear()} Fundación LumenCor. Todos los derechos reservados.</p>
-        </div>
       </div>
     </footer>
   );

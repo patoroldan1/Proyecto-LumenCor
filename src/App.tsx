@@ -24,7 +24,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f1eb] font-sans antialiased selection:bg-amber-200 selection:text-stone-900">
+    <div className="min-h-screen bg-[#f5f1eb] font-sans antialiased selection:bg-amber-200 selection:text-stone-900 w-full max-w-full overflow-x-hidden relative">
       {/* VISTA 1: HOME */}
       {activeSection === 'home' ? (
         <HomeHeroGrid
@@ -33,20 +33,20 @@ export default function App() {
         />
       ) : (
         /* VISTA 2: SECCIONES INTERNAS */
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen w-full max-w-full overflow-x-hidden">
           <Navbar
             activeSection={activeSection}
             onSelectSection={handleSelectSection}
             onOpenVolunteerModal={() => setIsVolunteerModalOpen(true)}
           />
 
-          <main className="flex-1">
+          <main className="flex-1 w-full max-w-full overflow-x-hidden">
             {activeSection === 'editorial' && <EditorialSection />}
             {activeSection === 'viajes' && <ViajesSection />}
             {activeSection === 'donar' && <DonarSection />}
             {activeSection === 'social' && (
               <SocialSection onOpenVolunteerModal={() => setIsVolunteerModalOpen(true)} />
-              )}
+            )}
             {activeSection === 'arte' && <ArteSection />}
             {activeSection === 'medios' && <MediosSection />}
           </main>

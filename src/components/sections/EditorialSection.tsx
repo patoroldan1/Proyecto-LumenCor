@@ -132,7 +132,7 @@ export const EditorialSection: React.FC = () => {
           <div className="space-y-3 text-center md:text-left z-10 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold">
               <Feather className="w-3.5 h-3.5" />
-              <span>Convocatoria Abierta</span>
+              <span>Editorial LumenCor</span>
             </div>
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
               ¿Querés publicar tu libro con Editorial LumenCor?
