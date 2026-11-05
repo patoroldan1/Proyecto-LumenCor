@@ -44,7 +44,7 @@ export const HomeHeroGrid: React.FC<HomeHeroGridProps> = ({
             aria-label="Sumarme como Voluntario"
           >
             <Users className="w-3.5 h-3.5 animate-pulse" />
-            <span className="hidden sm:inline">Sumarme como Voluntario</span>
+            <span className="hidden sm:inline">SUMATE</span>
             <span className="sm:hidden">SUMATE</span>
           </button>
 
