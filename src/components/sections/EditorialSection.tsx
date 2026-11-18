@@ -10,6 +10,7 @@ import {
   Feather,
 } from 'lucide-react';
 import { UniversalFormModal } from '../UniversalFormModal.tsx';
+import { SectionCtaBanner } from '../SectionCtaBanner.tsx';
 
 const DEFAULT_MERCADO_LIBRE_URL =
   'https://www.mercadolibre.com.ar/rozas-lucio-v-mansilla-el-ateneo-libro/up/MLAU5144703584?pdp_filters=item_id%3AMLA2072914001#polycard_client=search-desktop&float_highlight=last_units&be_origin=searchv2&overlay_label=not_apply&search_layout=grid&position=2&type=product&tracking_id=5924f953-1868-4fc5-826f-8a59f68afae7&overlay_label_capability=not_apply&wid=MLA2072914001&sid=search';
@@ -43,7 +44,7 @@ export const EditorialSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Catálogo de Libros */}
+      {/* Book Catalog Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {MOCK_BOOKS.map((book) => {
@@ -55,6 +56,7 @@ export const EditorialSection: React.FC = () => {
                 className="bg-white rounded-3xl border border-stone-200/90 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
+                  {/* Book Cover Frame */}
                   <div
                     onClick={() => setSelectedBookForModal(book)}
                     className="h-72 bg-stone-100 relative overflow-hidden cursor-pointer flex items-center justify-center p-6 group-hover:bg-amber-50/30 transition-colors"
@@ -79,6 +81,7 @@ export const EditorialSection: React.FC = () => {
                     </div>
                   </div>
 
+                  {/* Book Meta Details */}
                   <div className="p-5 space-y-2">
                     <p className="text-xs text-amber-800 font-medium">{book.author}</p>
                     <h3
@@ -100,6 +103,7 @@ export const EditorialSection: React.FC = () => {
                   </div>
                 </div>
 
+                {/* Precio y Botón Directo a Mercado Libre */}
                 <div className="p-5 pt-0 border-t border-stone-100 flex items-center justify-between mt-2">
                   <div>
                     <span className="text-[11px] text-stone-400 block uppercase font-medium">Precio</span>
@@ -126,35 +130,18 @@ export const EditorialSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Banner Convocatoria de Autores al final del catálogo */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
-        <div className="bg-stone-900 text-white rounded-3xl p-8 sm:p-12 shadow-xl border border-stone-800 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
-          <div className="space-y-3 text-center md:text-left z-10 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold">
-              <Feather className="w-3.5 h-3.5" />
-              <span>Editorial LumenCor</span>
-            </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
-              ¿Querés publicar tu libro con Editorial LumenCor?
-            </h2>
-            <p className="text-xs sm:text-sm text-stone-300 leading-relaxed font-light">
-              Acompañamos a autores de obras testimoniales, espiritualidad, filosofía comunitaria y ensayos sociales. Dejanos tus datos de contacto para coordinar una reunión.
-            </p>
-          </div>
+      {/* Banner Convocatoria de Autores usando la plantilla SectionCtaBanner */}
+      <SectionCtaBanner
+        badgeText="Convocatoria Abierta"
+        badgeIcon={<Feather className="w-3.5 h-3.5" />}
+        title="¿Querés publicar tu libro con Editorial LumenCor?"
+        description="Acompañamos a autores de obras testimoniales, espiritualidad, filosofía comunitaria y ensayos sociales. Dejanos tus datos de contacto para coordinar una reunión."
+        buttonText="Presentar mi Manuscrito"
+        buttonIcon={<Feather className="w-4 h-4" />}
+        onAction={() => setIsPublishModalOpen(true)}
+      />
 
-          <div className="z-10 flex-none">
-            <button
-              onClick={() => setIsPublishModalOpen(true)}
-              className="px-6 py-3.5 bg-amber-500 hover:bg-amber-400 text-stone-950 font-cinzel text-xs font-bold uppercase tracking-wider rounded-full shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer flex items-center gap-2"
-            >
-              <Feather className="w-4 h-4" />
-              <span>Presentar mi Manuscrito</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Modal Reutilizable Universal de Formulario (Solo Nombre, Email y Teléfono) */}
+      {/* Modal Reutilizable Universal de Formulario (Nombre, Email, Teléfono, Rubro y Mensaje) */}
       <UniversalFormModal
         isOpen={isPublishModalOpen}
         onClose={() => setIsPublishModalOpen(false)}
@@ -163,6 +150,7 @@ export const EditorialSection: React.FC = () => {
         badgeIcon={<Feather className="w-3.5 h-3.5" />}
         title="Publicar con Editorial"
         submitButtonText="Enviar Propuesta"
+        showRubroMensajeFields
         successTitle="¡Propuesta Recibida!"
         successDescription={({ name, phone, email }) =>
           `Recibimos tu solicitud, ${name}. Un miembro de nuestro equipo editorial se comunicará con vos al ${phone || email} para coordinar la gestión de tu proyecto literario.`

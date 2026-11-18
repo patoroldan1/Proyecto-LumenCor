@@ -6,16 +6,45 @@
 import React, { useState } from 'react';
 import { X, CheckCircle2, Loader2 } from 'lucide-react';
 
+const MAX_MESSAGE_WORDS = 200;
+
+export function countWords(text: string): number {
+  const trimmed = text.trim();
+  if (!trimmed) return 0;
+  return trimmed.split(/\s+/).length;
+}
+
+export function limitToMaxWords(text: string, maxWords = MAX_MESSAGE_WORDS): string {
+  const trimmed = text.trim();
+  if (!trimmed) return text;
+  const words = trimmed.split(/\s+/);
+  if (words.length <= maxWords) return text;
+
+  let count = 0;
+  const regex = /\S+/g;
+  let match: RegExpExecArray | null;
+  let endIndex = text.length;
+  while ((match = regex.exec(text)) !== null) {
+    count++;
+    if (count === maxWords) {
+      endIndex = match.index + match[0].length;
+      break;
+    }
+  }
+  return text.slice(0, endIndex);
+}
+
 export interface UniversalFormModalProps {
   isOpen: boolean;
   onClose: () => void;
-  seccion: string; // 'social' | 'editorial' | 'viajes' | 'arte'
+  seccion: string; // 'social' | 'editorial' | 'viajes' | 'arte' | 'medios'
   badgeText: string;
   badgeIcon?: React.ReactNode;
   title: string;
   submitButtonText?: string;
   successTitle?: string;
   successDescription?: (formData: { name: string; phone: string; email: string; extra: Record<string, string> }) => string;
+  showRubroMensajeFields?: boolean;
   initialExtraData?: Record<string, string>;
   renderExtraFields?: (
     extraData: Record<string, string>,
@@ -33,6 +62,7 @@ export const UniversalFormModal: React.FC<UniversalFormModalProps> = ({
   submitButtonText = 'Enviar',
   successTitle,
   successDescription,
+  showRubroMensajeFields = false,
   initialExtraData = {},
   renderExtraFields,
 }) => {
@@ -65,11 +95,29 @@ export const UniversalFormModal: React.FC<UniversalFormModalProps> = ({
     setExtraData((prev) => ({ ...prev, [key]: value }));
   };
 
+  const handleMessageChange = (value: string) => {
+    const limited = limitToMaxWords(value, MAX_MESSAGE_WORDS);
+    handleExtraChange('mensaje', limited);
+  };
+
+  const messageWordCount = countWords(extraData.mensaje || '');
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!baseForm.name.trim() || !baseForm.email.trim()) return;
+    if (showRubroMensajeFields && (!(extraData.rubro || '').trim() || !(extraData.mensaje || '').trim())) {
+      return;
+    }
 
     setIsSending(true);
+
+    const sanitizedExtraData = showRubroMensajeFields
+      ? {
+          ...extraData,
+          rubro: (extraData.rubro || '').trim(),
+          mensaje: (extraData.mensaje || '').trim(),
+        }
+      : extraData;
 
     // Paquete unificado idéntico para el módulo de backend
     const payload = {
@@ -77,7 +125,7 @@ export const UniversalFormModal: React.FC<UniversalFormModalProps> = ({
       nombre: baseForm.name.trim(),
       email: baseForm.email.trim(),
       telefono: baseForm.phone.trim(),
-      datos: extraData,
+      datos: sanitizedExtraData,
       fechaEnvio: new Date().toISOString(),
     };
 
@@ -123,123 +171,170 @@ export const UniversalFormModal: React.FC<UniversalFormModalProps> = ({
             <X className="w-5 h-5" />
           </button>
 
-          {submitted ? (
-            /* Pantalla de confirmación unificada */
-            <div className="text-center py-8 space-y-4">
-              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle2 className="w-10 h-10" />
-              </div>
-              <h3 className="font-serif text-2xl font-bold text-stone-900">
-                {successTitle || `¡Muchas gracias, ${baseForm.name}!`}
-              </h3>
-              <p className="text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
-                {successDescription
-                  ? successDescription({
-                      name: baseForm.name,
-                      phone: baseForm.phone,
-                      email: baseForm.email,
-                      extra: extraData,
-                    })
-                  : `Recibimos tu solicitud para el área de ${badgeText}. El equipo de LumenCor se comunicará con vos al ${baseForm.phone || baseForm.email} a la brevedad.`}
-              </p>
-              <div className="pt-4">
-                <button
-                  onClick={handleClose}
-                  className="px-6 py-2.5 bg-stone-900 hover:bg-amber-600 text-white rounded-xl text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer"
-                >
-                  Cerrar
-                </button>
-              </div>
+        {submitted ? (
+          /* Pantalla de confirmación unificada */
+          <div className="text-center py-8 space-y-4">
+            <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+              <CheckCircle2 className="w-10 h-10" />
             </div>
-          ) : (
-            /* Formulario Base Universal */
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-1">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-semibold">
-                  {badgeIcon}
-                  <span>{badgeText}</span>
-                </div>
-                <h3 className="font-serif text-2xl font-bold text-stone-900 pt-1">
-                  {title}
-                </h3>
+            <h3 className="font-serif text-2xl font-bold text-stone-900">
+              {successTitle || `¡Muchas gracias, ${baseForm.name}!`}
+            </h3>
+            <p className="text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
+              {successDescription
+                ? successDescription({
+                    name: baseForm.name,
+                    phone: baseForm.phone,
+                    email: baseForm.email,
+                    extra: extraData,
+                  })
+                : `Recibimos tu solicitud para el área de ${badgeText}. El equipo de LumenCor se comunicará con vos al ${baseForm.phone || baseForm.email} a la brevedad.`}
+            </p>
+            <div className="pt-4">
+              <button
+                onClick={handleClose}
+                className="px-6 py-2.5 bg-stone-900 hover:bg-amber-600 text-white rounded-xl text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        ) : (
+          /* Formulario Base Universal */
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-semibold">
+                {badgeIcon}
+                <span>{badgeText}</span>
+              </div>
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 pt-1 pr-6">
+                {title}
+              </h3>
+            </div>
+
+            <div className="space-y-3 pt-1">
+              {/* 1. Nombre y Apellido (Universal) */}
+              <div className="min-w-0">
+                <label className="block text-xs font-medium text-stone-700 mb-1">
+                  Nombre y Apellido *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={baseForm.name}
+                  onChange={(e) => setBaseForm({ ...baseForm, name: e.target.value })}
+                  placeholder="Ej. Lucas Gómez"
+                  className="w-full max-w-full min-w-0 px-3.5 py-2 bg-stone-50 border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white box-border"
+                />
               </div>
 
-              <div className="space-y-3 pt-1">
-                {/* 1. Nombre y Apellido (Universal) */}
-                <div>
+              {/* 2 y 3. Correo y Teléfono (Universal) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="min-w-0">
                   <label className="block text-xs font-medium text-stone-700 mb-1">
-                    Nombre y Apellido *
+                    Correo Electrónico *
                   </label>
                   <input
-                    type="text"
+                    type="email"
                     required
-                    value={baseForm.name}
-                    onChange={(e) => setBaseForm({ ...baseForm, name: e.target.value })}
-                    placeholder="Ej. Lucas Gómez"
+                    value={baseForm.email}
+                    onChange={(e) => setBaseForm({ ...baseForm, email: e.target.value })}
+                    placeholder="tu@email.com"
                     className="w-full max-w-full min-w-0 px-3.5 py-2 bg-stone-50 border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white box-border"
                   />
                 </div>
-
-                {/* 2 y 3. Correo y Teléfono (Universal) */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="min-w-0">
-                    <label className="block text-xs font-medium text-stone-700 mb-1">
-                      Correo Electrónico *
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      value={baseForm.email}
-                      onChange={(e) => setBaseForm({ ...baseForm, email: e.target.value })}
-                      placeholder="tu@email.com"
-                      className="w-full max-w-full min-w-0 px-3.5 py-2 bg-stone-50 border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white box-border"
-                    />
-                  </div>
-                  <div className="min-w-0">
-                    <label className="block text-xs font-medium text-stone-700 mb-1">
-                      WhatsApp / Teléfono *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      value={baseForm.phone}
-                      onChange={(e) => setBaseForm({ ...baseForm, phone: e.target.value })}
-                      placeholder="+54 9 11 ..."
-                      className="w-full max-w-full min-w-0 px-3.5 py-2 bg-stone-50 border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white box-border"
-                    />
-                  </div>
+                <div className="min-w-0">
+                  <label className="block text-xs font-medium text-stone-700 mb-1">
+                    WhatsApp / Teléfono *
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    value={baseForm.phone}
+                    onChange={(e) => setBaseForm({ ...baseForm, phone: e.target.value })}
+                    placeholder="+54 9 11 ..."
+                    className="w-full max-w-full min-w-0 px-3.5 py-2 bg-stone-50 border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white box-border"
+                  />
                 </div>
-
-                {/* 4. Campos extra específicos de la sección (si los hay) */}
-                {renderExtraFields && renderExtraFields(extraData, handleExtraChange)}
               </div>
 
-              {/* Botones de acción */}
-              <div className="pt-3 flex gap-2">
-                <button
-                  type="button"
-                  onClick={handleClose}
-                  className="flex-1 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-semibold cursor-pointer"
-                >
-                  Cancelar
-                </button>
-                <button
-                  type="submit"
-                  disabled={isSending}
-                  className="flex-1 py-2.5 bg-stone-900 hover:bg-amber-600 disabled:bg-stone-400 text-white text-xs font-semibold rounded-xl uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5"
-                >
-                  {isSending ? (
-                    <>
-                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                      <span>Enviando...</span>
-                    </>
-                  ) : (
-                    <span>{submitButtonText}</span>
-                  )}
-                </button>
-              </div>
-            </form>
-          )}
+              {/* Campos adicionales: Rubro y Mensaje (Editorial, Arte y Medios) */}
+              {showRubroMensajeFields && (
+                <>
+                  <div className="min-w-0">
+                    <label className="block text-xs font-medium text-stone-700 mb-1">
+                      ¿A qué Rubro te Dedicas? *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={extraData.rubro || ''}
+                      onChange={(e) => handleExtraChange('rubro', e.target.value)}
+                      placeholder="Ej. Diseño, Gastronomía, Periodismo, Docencia..."
+                      className="w-full max-w-full min-w-0 px-3.5 py-2 bg-stone-50 border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white box-border"
+                    />
+                  </div>
+
+                  <div className="min-w-0">
+                    <label className="block text-xs font-medium text-stone-700 mb-1">
+                      Mensaje *
+                    </label>
+                    <textarea
+                      required
+                      rows={3}
+                      value={extraData.mensaje || ''}
+                      onChange={(e) => handleMessageChange(e.target.value)}
+                      placeholder="Escribí tu mensaje o consulta (máximo 200 palabras)..."
+                      className="w-full max-w-full min-w-0 px-3.5 py-2 bg-stone-50 border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white box-border resize-none leading-relaxed"
+                    />
+                    <div className="flex justify-between items-center mt-1 text-[11px]">
+                      <span className="text-stone-400">Límite máximo: 200 palabras</span>
+                      <span
+                        className={
+                          messageWordCount >= MAX_MESSAGE_WORDS
+                            ? 'text-rose-600 font-semibold'
+                            : messageWordCount >= 180
+                            ? 'text-amber-700 font-medium'
+                            : 'text-stone-500'
+                        }
+                      >
+                        {messageWordCount} / {MAX_MESSAGE_WORDS} palabras
+                      </span>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {/* 4. Campos extra específicos de la sección (si los hay) */}
+              {renderExtraFields && renderExtraFields(extraData, handleExtraChange)}
+            </div>
+
+            {/* Botones de acción */}
+            <div className="pt-3 flex gap-2">
+              <button
+                type="button"
+                onClick={handleClose}
+                className="flex-1 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-semibold cursor-pointer"
+              >
+                Cancelar
+              </button>
+              <button
+                type="submit"
+                disabled={isSending}
+                className="flex-1 py-2.5 bg-stone-900 hover:bg-amber-600 disabled:bg-stone-400 text-white text-xs font-semibold rounded-xl uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5"
+              >
+                {isSending ? (
+                  <>
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    <span>Enviando...</span>
+                  </>
+                ) : (
+                  <span>{submitButtonText}</span>
+                )}
+              </button>
+            </div>
+          </form>
+        )}
         </div>
       </div>
     </div>

@@ -20,7 +20,6 @@ import { SectionCtaBanner } from '../SectionCtaBanner.tsx';
 import { UniversalFormModal } from '../UniversalFormModal.tsx';
 
 export const MediosSection: React.FC = () => {
-  // Estado simple para controlar si el modal está abierto o cerrado
   const [isPressModalOpen, setIsPressModalOpen] = useState(false);
 
   const getMediaIcon = (type: string) => {
@@ -61,7 +60,7 @@ export const MediosSection: React.FC = () => {
       </div>
 
 
-      {/* Grilla de Notas y Coberturas en Medios */}
+      {/* Media Coverage Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 space-y-8">
         <div>
           <span className="text-xs font-semibold text-amber-700 uppercase tracking-widest font-cinzel">
@@ -127,26 +126,27 @@ export const MediosSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Banner Plantilla: SectionCtaBanner para Medios */}
+      {/* Banner Plantilla SectionCtaBanner para Medios */}
       <SectionCtaBanner
-        badgeText="Medios LumenCor"
+        badgeText="Prensa LumenCor"
         badgeIcon={<Tv className="w-3.5 h-3.5" />}
-        title="¿Sos periodista o querés coordinar una nota con la fundación?"
-        description="Brindamos información de primera mano sobre la realidad de la calle, gacetillas, testimonios y coordinamos entrevistas con voceros de LumenCor."
+        title="¿Sos periodista o querés difundir la misión de LumenCor?"
+        description="Brindamos información de primera mano sobre la realidad de la calle, gacetillas, testimonios y coordinamos entrevistas con voceros de la fundación."
         buttonText="Contacto de Prensa"
         buttonIcon={<Tv className="w-4 h-4" />}
         onAction={() => setIsPressModalOpen(true)}
       />
 
-      {/* Modal Universal para Prensa (Solo pide Nombre, Email y Teléfono) */}
+      {/* Modal Universal para Prensa (Nombre, Email, Teléfono, Rubro y Mensaje) */}
       <UniversalFormModal
         isOpen={isPressModalOpen}
         onClose={() => setIsPressModalOpen(false)}
         seccion="medios"
-        badgeText="Medios LumenCor"
+        badgeText="Prensa LumenCor"
         badgeIcon={<Tv className="w-3.5 h-3.5" />}
         title="Contacto para Medios y Prensa"
         submitButtonText="Enviar Consulta"
+        showRubroMensajeFields
         successTitle="¡Solicitud de Prensa Recibida!"
         successDescription={({ name, phone, email }) =>
           `Muchas gracias, ${name}. El equipo de comunicación institucional de LumenCor se comunicará con vos al ${phone || email} a la brevedad.`

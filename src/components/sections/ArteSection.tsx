@@ -15,7 +15,6 @@ export const ArteSection: React.FC = () => {
   const [isArtModalOpen, setIsArtModalOpen] = useState(false);
   const [selectedArtTitle, setSelectedArtTitle] = useState('');
 
-  // Función que abre el modal (puede ser general o sobre una obra específica)
   const handleOpenArtInquiry = (artTitle: string = '') => {
     setSelectedArtTitle(artTitle);
     setIsArtModalOpen(true);
@@ -46,8 +45,8 @@ export const ArteSection: React.FC = () => {
         </div>
       </div>
 
-      
-      {/* Galería de Obras */}
+
+      {/* Art Gallery */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 space-y-8">
         <div className="text-center max-w-2xl mx-auto">
           <span className="text-xs font-semibold text-amber-700 uppercase tracking-widest font-cinzel">
@@ -120,7 +119,7 @@ export const ArteSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Banner Plantilla: SectionCtaBanner para Arte */}
+      {/* Banner Plantilla SectionCtaBanner para Arte */}
       <SectionCtaBanner
         badgeText="Cultura y Talleres Solidarios"
         badgeIcon={<Palette className="w-3.5 h-3.5" />}
@@ -131,7 +130,7 @@ export const ArteSection: React.FC = () => {
         onAction={() => handleOpenArtInquiry('')}
       />
 
-      {/* Modal Universal para Arte (Solo pide Nombre, Email y Teléfono) */}
+      {/* Modal Universal para Arte (Nombre, Email, Teléfono, Rubro y Mensaje) */}
       <UniversalFormModal
         isOpen={isArtModalOpen}
         onClose={() => setIsArtModalOpen(false)}
@@ -140,13 +139,14 @@ export const ArteSection: React.FC = () => {
         badgeIcon={<Palette className="w-3.5 h-3.5" />}
         title={selectedArtTitle ? `Consulta sobre: ${selectedArtTitle}` : "Sumarme al Área de Arte"}
         submitButtonText="Enviar Mensaje"
+        showRubroMensajeFields
         successTitle="¡Mensaje Recibido!"
         successDescription={({ name, phone, email }) =>
           `Muchas gracias, ${name}. El equipo del Taller de Arte de LumenCor se comunicará con vos al ${phone || email} para coordinar la consulta.`
         }
       />
 
-      {/* Modal de Detalle de Obra (para ver la imagen grande) */}
+      {/* Modal de Detalle de Obra */}
       {selectedArtForDetail && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
           <div className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden border border-stone-200">
