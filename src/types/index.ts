@@ -12,6 +12,7 @@ export interface SectionMeta {
   description: string;
   bgDesktop: string;
   bgMobile: string;
+  bgPosition?: string;
 }
 
 export interface Book {

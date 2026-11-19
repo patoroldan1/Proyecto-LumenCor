@@ -38,10 +38,11 @@ export const MediosSection: React.FC = () => {
     <div className="min-h-screen bg-[#faf8f5] text-stone-900 pb-20">
       {/* Hero Header */}
       <div className="relative bg-stone-900 text-stone-100 py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 opacity-25 pointer-events-none">
+        <div className="absolute inset-0 opacity-40 pointer-events-none">
           <img
-            src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1600&q=80"
+            src="/assets/images/midjourney-medios.png"
             alt="Fondo Medios y Prensa"
+            style={{ objectPosition: '50% 78%' }}
             className="w-full h-full object-cover"
           />
         </div>
@@ -88,9 +89,9 @@ export const MediosSection: React.FC = () => {
                     {getMediaIcon(item.type)}
                     <span className="capitalize">{item.type}</span>
                   </div>
-                  {item.duration && (
+                  {item.videoDuration && (
                     <div className="absolute bottom-4 right-4 bg-black/70 text-white text-[10px] px-2 py-0.5 rounded font-mono">
-                      {item.duration}
+                      {item.videoDuration}
                     </div>
                   )}
                 </div>
@@ -104,15 +105,14 @@ export const MediosSection: React.FC = () => {
                     {item.title}
                   </h3>
                   <p className="text-xs text-stone-600 line-clamp-3 leading-relaxed">
-                    {item.summary}
+                    {item.description}
                   </p>
                 </div>
               </div>
 
               <div className="p-6 pt-0 border-t border-stone-100 flex items-center justify-between mt-4">
-                <span className="text-xs text-stone-400 font-medium">Cobertura pública</span>
                 <a
-                  href={item.linkUrl || '#'}
+                  href={item.externalUrl || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-xs font-semibold text-stone-900 hover:text-amber-600 group transition-colors"

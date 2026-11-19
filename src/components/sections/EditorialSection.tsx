@@ -23,15 +23,16 @@ export const EditorialSection: React.FC = () => {
     <div className="min-h-screen bg-[#faf8f5] text-stone-900 pb-20">
       {/* Editorial Hero Banner */}
       <div className="relative bg-stone-900 text-stone-100 py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute inset-0 opacity-35 pointer-events-none">
           <img
-            src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1600&q=80"
+            src="/assets/images/midjourney-editorial.png"
             alt="Fondo Libros"
+            style={{ objectPosition: '50% 45%' }}
             className="w-full h-full object-cover"
           />
         </div>
         <div className="relative max-w-4xl mx-auto text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs tracking-widest font-cinzel uppercase">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs tracking-widest font-cinzel uppercase">
             <BookOpen className="w-3.5 h-3.5" />
             <span>Catálogo Oficial de la Editorial</span>
           </div>
@@ -67,12 +68,6 @@ export const EditorialSection: React.FC = () => {
                       className="max-h-full w-auto object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-500"
                     />
 
-                    {book.featured && (
-                      <span className="absolute top-4 left-4 bg-amber-500 text-stone-950 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1">
-                        <Star className="w-3 h-3 fill-current" />
-                        Destacado
-                      </span>
-                    )}
 
                     <div className="absolute inset-0 bg-stone-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                       <span className="p-2.5 bg-white text-stone-900 rounded-full shadow-lg">

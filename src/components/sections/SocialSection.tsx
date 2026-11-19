@@ -26,11 +26,9 @@ interface MemoryPhoto {
   category: 'todos' | 'comienzos' | 'rondas' | 'cocina' | 'talleres' | 'comunidad';
   image: string;
   anecdote: string;
-  quote?: string;
   location?: string;
   aspect: 'tall' | 'wide' | 'square';
   rotation: string; // CSS rotation for organic collage look
-  tag: string;
 }
 
 const MEMORIES_DATA: MemoryPhoto[] = [
@@ -41,11 +39,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'comienzos',
     image: '/assets/images/social_primeros_dias.jpg',
     anecdote: 'Con solo dos termos prestados, una olla de sopa caliente y muchas ganas de escuchar, salimos por primera vez a caminar la noche porteña. No sabíamos cuánto iba a crecer esto.',
-    quote: '«No fuimos a dar comida, fuimos a encontrarnos con hermanos.»',
     location: 'Av. Callao y Corrientes',
     aspect: 'tall',
     rotation: '-rotate-1',
-    tag: '#Comienzos',
   },
   {
     id: 'mem-2',
@@ -54,11 +50,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'rondas',
     image: '/assets/images/social_ronda_nocturna.jpg',
     anecdote: 'Aquel julio fue el más frío que recordamos. Los termos humeaban sin parar y el abrigo humano bajo los aleros de la estación hizo el milagro de transformar la soledad.',
-    quote: '«La lluvia nunca frenó una ronda; es justo cuando más nos esperan.»',
     location: 'Estación Retiro',
     aspect: 'wide',
     rotation: 'rotate-1',
-    tag: '#RondasNocturnas',
   },
   {
     id: 'mem-3',
@@ -67,11 +61,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'cocina',
     image: '/assets/images/social_cocina_comunitaria.jpg',
     anecdote: 'Pelar cincuenta kilos de cebollas y picar verduras entre mates, risas y canciones. La cocina es el corazón palpitante donde la comunidad se gesta antes de pisar la calle.',
-    quote: '«El ingrediente que jamás falta es el tiempo compartido.»',
     location: 'Sede Central',
     aspect: 'square',
     rotation: '-rotate-2',
-    tag: '#LaCocina',
   },
   {
     id: 'mem-4',
@@ -80,11 +72,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'comunidad',
     image: '/assets/images/social_mate_comunidad.jpg',
     anecdote: 'Pasar el mate de mano en mano en el banco de la plaza. No hay etiquetas, ni jerarquías, ni distancias: somos personas compartiendo la vida bajo el mismo cielo.',
-    quote: '«Un mate caliente rompe semanas de silencio e invisibilidad.»',
     location: 'Constitución',
     aspect: 'tall',
     rotation: 'rotate-2',
-    tag: '#Encuentro',
   },
   {
     id: 'mem-5',
@@ -93,11 +83,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'talleres',
     image: '/assets/images/social_taller_oficios.jpg',
     anecdote: 'Aprender carpintería y restauración no es solo lijar una tabla; es recuperar la confianza profunda de saber que uno es capaz de construir valor y belleza con sus manos.',
-    quote: '«Recuperar el orgullo del trabajo y la dignidad de crear.»',
     location: 'Galpón San José',
     aspect: 'square',
     rotation: '-rotate-1',
-    tag: '#Oficios',
   },
   {
     id: 'mem-6',
@@ -106,11 +94,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'cocina',
     image: '/assets/images/pan_solidario.jpg',
     anecdote: 'Madrugadas de harina, levadura y fuego de leña. El aroma del pan recién horneado inundaba la cuadra anunciando que el día arrancaba con alimento digno y caliente.',
-    quote: '«El pan compartido alimenta mucho más que el cuerpo.»',
     location: 'Panadería Social',
     aspect: 'wide',
     rotation: 'rotate-1',
-    tag: '#PanSolidario',
   },
   {
     id: 'mem-7',
@@ -119,11 +105,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'talleres',
     image: '/assets/images/mujer_pintando.jpg',
     anecdote: 'Frente a la dureza del asfalto, el lienzo en blanco devuelve los colores, los sueños y la memoria de la infancia. Una tarde de pintura donde brotaron lágrimas y sonrisas.',
-    quote: '«El arte rescata la belleza que la hostilidad de la calle apaga.»',
     location: 'Espacio Cultural',
     aspect: 'tall',
     rotation: '-rotate-2',
-    tag: '#ArteComunitario',
   },
   {
     id: 'mem-8',
@@ -132,11 +116,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'comunidad',
     image: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80&w=1200',
     anecdote: 'Don Ramón nos esperaba todos los jueves en el mismo banco. Cuando cumplió 70 años, la plaza entera se llenó de velas, torta casera y un abrazo colectivo inolvidable.',
-    quote: '«Alguien que te mire a los ojos y te llame por tu nombre: eso es todo.»',
     location: 'Plaza Miserere',
     aspect: 'wide',
     rotation: 'rotate-2',
-    tag: '#Abrazos',
   },
   {
     id: 'mem-9',
@@ -145,11 +127,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'rondas',
     image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=1200',
     anecdote: 'Cientos de frazadas térmicas clasificadas, medias de abrigo y bufandas tejidas a mano por voluntarias de todo el país, cada una con un mensaje de aliento.',
-    quote: '«Tejemos una red invisible de cariño que abriga en la intemperie.»',
     location: 'Centro de Acopio',
     aspect: 'square',
     rotation: '-rotate-1',
-    tag: '#Abrigo',
   },
   {
     id: 'mem-10',
@@ -158,11 +138,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'comunidad',
     image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=1200',
     anecdote: 'Celebrar los pequeños y grandes hitos: un documento tramitado, una primera entrevista laboral, un reencuentro con un hijo después de años de distancia.',
-    quote: '«La alegría compartida tiene una fuerza sanadora incalculable.»',
     location: 'Patio de Encuentro',
     aspect: 'tall',
     rotation: 'rotate-1',
-    tag: '#Celebración',
   },
   {
     id: 'mem-11',
@@ -171,11 +149,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'cocina',
     image: 'https://images.unsplash.com/photo-1518398046578-8cca57782e17?auto=format&fit=crop&q=80&w=1200',
     anecdote: 'Una olla gigante de guiso de lentejas humeando a las diez de la noche. Servir no es tirar comida: es acercar un plato con reverencia y cariño.',
-    quote: '«Dignidad y ternura en cada cucharón.»',
     location: 'Ronda Congreso',
     aspect: 'wide',
     rotation: '-rotate-2',
-    tag: '#LaCocina',
   },
   {
     id: 'mem-12',
@@ -184,11 +160,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'rondas',
     image: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=1200',
     anecdote: 'El momento sagrado antes de salir: mochilas cargadas, termos revisados y una breve oración o silencio para disponer el corazón a escuchar sin prejuicios.',
-    quote: '«Caminamos juntos, nos cuidamos juntos.»',
     location: 'Barrio Sur',
     aspect: 'square',
     rotation: 'rotate-2',
-    tag: '#RondasNocturnas',
   },
   {
     id: 'mem-13',
@@ -197,11 +171,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'comunidad',
     image: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb7?auto=format&fit=crop&q=80&w=1200',
     anecdote: 'Sentarse en el cordón de la vereda a la misma altura. No miramos desde arriba: nos sentamos al lado para mirar hacia adelante juntos.',
-    quote: '«Estar presentes con respeto es el verdadero inicio del cambio.»',
     location: 'San Telmo',
     aspect: 'tall',
     rotation: '-rotate-1',
-    tag: '#Presencia',
   },
   {
     id: 'mem-14',
@@ -210,11 +182,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'talleres',
     image: 'https://images.unsplash.com/photo-1578357078586-491adf1aa5ba?auto=format&fit=crop&q=80&w=1200',
     anecdote: 'Una pared gris del barrio convertida en un estallido de color y esperanza gracias al pincel de quienes vivían en la calle y los vecinos que se sumaron.',
-    quote: '«Transformar el cemento gris en un grito de vida.»',
     location: 'Barracas',
     aspect: 'wide',
     rotation: 'rotate-1',
-    tag: '#ArteComunitario',
   },
   {
     id: 'mem-15',
@@ -223,11 +193,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'comienzos',
     image: '/assets/images/social_primeros_dias.jpg',
     anecdote: 'Éramos apenas siete personas en el garaje de una parroquia amiga. Con más dudas que certezas, pero con una certeza inquebrantable: no podíamos ser indiferentes.',
-    quote: '«Un pequeño grupo de personas decididas puede encender una llama inmensa.»',
     location: 'Almagro',
     aspect: 'square',
     rotation: '-rotate-2',
-    tag: '#Comienzos',
   },
   {
     id: 'mem-16',
@@ -236,11 +204,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'cocina',
     image: '/assets/images/social_cocina_comunitaria.jpg',
     anecdote: 'En Nochebuena nadie debe cenar solo ni a oscuras. Cortamos la calle, tendimos manteles largos con flores y brindamos más de doscientas personas como una gran familia.',
-    quote: '«La Navidad es renacer en el abrazo de quienes la sociedad olvida.»',
     location: 'Plaza Lavalle',
     aspect: 'tall',
     rotation: 'rotate-2',
-    tag: '#Familia',
   },
   {
     id: 'mem-17',
@@ -249,11 +215,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'rondas',
     image: '/assets/images/social_ronda_nocturna.jpg',
     anecdote: 'Las primeras luces del alba sobre la torre de los ingleses. Volver a casa con los ojos cansados pero el corazón desbordante de paz y sentido.',
-    quote: '«La noche te transforma: salís uno y volvés otro para siempre.»',
     location: 'Torre Monumental',
     aspect: 'wide',
     rotation: '-rotate-1',
-    tag: '#RondasNocturnas',
   },
   {
     id: 'mem-18',
@@ -262,11 +226,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'talleres',
     image: '/assets/images/social_taller_oficios.jpg',
     anecdote: 'Aprender a cortar cuero y coser suelas. Carlos, tras dos años en situación de calle, realizó aquí sus primeros pares de zapatos y hoy trabaja en su propio taller.',
-    quote: '«Dar herramientas reales para que cada uno camine por su propia cuenta.»',
     location: 'Centro de Oficios',
     aspect: 'square',
     rotation: 'rotate-1',
-    tag: '#Oficios',
   },
   {
     id: 'mem-19',
@@ -275,11 +237,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'comunidad',
     image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1200',
     anecdote: 'Una guitarra criolla, una ronda de canciones infantiles y los chicos riéndose a carcajadas. La infancia no puede quedar congelada en la calle.',
-    quote: '«Cuidar la sonrisa de los más chicos es cuidar el futuro de todos.»',
     location: 'Parque Patricios',
     aspect: 'tall',
     rotation: '-rotate-2',
-    tag: '#Infancias',
   },
   {
     id: 'mem-20',
@@ -288,11 +248,9 @@ const MEMORIES_DATA: MemoryPhoto[] = [
     category: 'comunidad',
     image: '/assets/images/social_mate_comunidad.jpg',
     anecdote: 'Jóvenes voluntarios que recién empezaban la facultad charlando durante horas con Antonio, que llevaba 15 años viviendo bajo los puentes. Aprendizaje mutuo y genuino.',
-    quote: '«En la calle se aprende la sabiduría que no enseñan los libros.»',
     location: 'Bajo Autopista 25 de Mayo',
     aspect: 'wide',
     rotation: 'rotate-2',
-    tag: '#Encuentro',
   },
 ];
 
@@ -327,15 +285,16 @@ export const SocialSection: React.FC<SocialSectionProps> = ({ onOpenVolunteerMod
       <div className="relative bg-stone-950 text-stone-100 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <img
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=80"
+            src="/assets/images/midjourney-social.png"
             alt="Social - Fundación LumenCor"
-            className="w-full h-full object-cover opacity-35"
+            style={{ objectPosition: '50% 24%' }}
+            className="w-full h-full object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-stone-950/60 via-stone-950/40 to-stone-950/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-stone-950/50 via-stone-950/30 to-stone-950/75" />
         </div>
 
         <div className="relative max-w-4xl mx-auto text-center space-y-4 sm:space-y-5">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/40 border border-amber-500/40 text-amber-300 text-xs tracking-widest font-cinzel uppercase shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-300 text-xs tracking-widest font-cinzel uppercase shadow-xs">
             <Users className="w-3.5 h-3.5 text-amber-400" />
             <span>EL CORAZÓN DE NUESTRA MISIÓN</span>
           </div>
@@ -352,7 +311,7 @@ export const SocialSection: React.FC<SocialSectionProps> = ({ onOpenVolunteerMod
             <button
               type="button"
               onClick={() => onOpenVolunteerModal?.()}
-              className="inline-flex items-center gap-2 px-7 py-3 bg-amber-500 hover:bg-amber-400 active:scale-95 text-stone-950 font-cinzel font-bold text-xs sm:text-sm tracking-widest uppercase rounded-full shadow-lg hover:shadow-amber-500/30 transition-all duration-200 cursor-pointer"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-amber-500 hover:bg-amber-400 active:scale-95 text-stone-950 font-cinzel font-extrabold text-sm sm:text-base tracking-[0.2em] uppercase rounded-full shadow-lg hover:shadow-amber-500/30 transition-all duration-200 cursor-pointer"
             >
               <Heart className="w-4 h-4 fill-stone-950 text-stone-950" />
               <span>SUMATE</span>
@@ -392,12 +351,6 @@ export const SocialSection: React.FC<SocialSectionProps> = ({ onOpenVolunteerMod
                   {/* Gradiente sutil y badge */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5 text-white">
                     <div className="flex justify-between items-start">
-                      <span className="text-[10px] font-cinzel font-bold px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md text-amber-200 uppercase tracking-widest border border-white/20">
-                        {photo.tag}
-                      </span>
-                      <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-md text-stone-200">
-                        Ver historia ↗
-                      </span>
                     </div>
 
                     <div>
@@ -428,9 +381,6 @@ export const SocialSection: React.FC<SocialSectionProps> = ({ onOpenVolunteerMod
                       )}
                     </p>
                   </div>
-                  <span className="text-[10px] font-cinzel font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 flex-shrink-0">
-                    {photo.tag}
-                  </span>
                 </div>
               </div>
             );
@@ -488,9 +438,6 @@ export const SocialSection: React.FC<SocialSectionProps> = ({ onOpenVolunteerMod
                 alt={currentPhoto.title}
                 className="w-full h-full object-contain max-h-[70vh]"
               />
-              <span className="absolute bottom-3 left-3 text-[10px] font-cinzel text-amber-300 bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-sm border border-white/10">
-                {currentPhoto.tag} • Foto {activePhotoIndex + 1} de {photos.length}
-              </span>
             </div>
 
             {/* Lado Texto / Testimonio */}
@@ -518,12 +465,7 @@ export const SocialSection: React.FC<SocialSectionProps> = ({ onOpenVolunteerMod
                   {currentPhoto.anecdote}
                 </p>
 
-                {currentPhoto.quote && (
-                  <div className="border-l-2 border-amber-500 pl-3.5 py-1 italic text-amber-200/90 text-xs sm:text-sm font-serif">
-                    <Quote className="w-4 h-4 text-amber-500 inline-block mr-1 opacity-70" />
-                    {currentPhoto.quote}
-                  </div>
-                )}
+                
               </div>
 
               {/* Pie de Lightbox con botón de sumarse */}
@@ -537,10 +479,11 @@ export const SocialSection: React.FC<SocialSectionProps> = ({ onOpenVolunteerMod
                     setActivePhotoIndex(null);
                     onOpenVolunteerModal?.();
                   }}
-                  className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-cinzel font-bold text-[11px] tracking-wider uppercase rounded-full transition-all cursor-pointer"
+                  className="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-stone-950 font-cinzel font-extrabold text-xs tracking-[0.18em] uppercase rounded-full transition-all cursor-pointer"
                 >
                   SUMATE
                 </button>
+
               </div>
             </div>
           </div>

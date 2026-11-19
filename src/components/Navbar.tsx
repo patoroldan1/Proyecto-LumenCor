@@ -114,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Botón SUMATE (en tablets y desktop) */}
           <button
             onClick={onOpenVolunteerModal || (() => handleNavClick('social'))}
-            className="hidden sm:flex items-center gap-1.5 text-xs sm:text-sm font-semibold bg-amber-500 hover:bg-amber-400 active:scale-95 active:bg-amber-500 text-stone-950 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-pointer font-sans whitespace-nowrap touch-manipulation"
+            className="hidden sm:flex items-center gap-1.5 text-xs sm:text-[15px] font-bold tracking-wider bg-amber-500 hover:bg-amber-400 active:scale-95 active:bg-amber-500 text-stone-950 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 cursor-pointer font-sans whitespace-nowrap touch-manipulation"
             aria-label="SUMATE"
           >
             <Users className="w-3.5 h-3.5 animate-pulse" />
@@ -186,7 +186,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 if (onOpenVolunteerModal) onOpenVolunteerModal();
                 else handleNavClick('social');
               }}
-              className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 active:scale-95 active:bg-amber-400 text-stone-950 font-sans font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer touch-manipulation"
+              className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 active:scale-95 active:bg-amber-400 text-stone-950 font-sans font-bold text-sm uppercase tracking-[0.14em] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer touch-manipulation"
               aria-label="SUMATE"
             >
               <Users className="w-4 h-4 animate-pulse" />

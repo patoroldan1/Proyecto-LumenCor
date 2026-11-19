@@ -40,10 +40,11 @@ export const ViajesSection: React.FC = () => {
     <div className="min-h-screen bg-[#faf8f5] text-stone-900 pb-20">
       {/* Hero Banner */}
       <div className="relative bg-stone-900 text-stone-100 py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 opacity-25 pointer-events-none">
+        <div className="absolute inset-0 opacity-40 pointer-events-none">
           <img
-            src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1600&q=80"
+            src="/assets/images/midjourney-viajes.png"
             alt="Fondo Viajes"
+            style={{ objectPosition: '50% 52%' }}
             className="w-full h-full object-cover"
           />
         </div>
@@ -112,9 +113,6 @@ export const ViajesSection: React.FC = () => {
                         alt={trip.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute top-3 right-3 bg-stone-900/80 backdrop-blur-sm text-amber-300 text-[11px] font-semibold px-3 py-1 rounded-full border border-white/10">
-                        {trip.spotsLeft ? `${trip.spotsLeft} cupos disponibles` : 'Inscripción abierta'}
-                      </div>
                       <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-stone-200 text-xs px-2.5 py-1 rounded-lg flex items-center gap-1.5">
                         <MapPin className="w-3.5 h-3.5 text-amber-400" />
                         <span>{trip.destination}</span>

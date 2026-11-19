@@ -13,8 +13,19 @@ import { SocialSection } from './components/sections/SocialSection.tsx';
 import { ArteSection } from './components/sections/ArteSection.tsx';
 import { MediosSection } from './components/sections/MediosSection.tsx';
 
+const VALID_SECTIONS: SectionId[] = ['home', 'social', 'editorial', 'viajes', 'arte', 'donar', 'medios'];
+
+function getInitialSection(): SectionId {
+  if (typeof window === 'undefined') return 'home';
+  const param = new URLSearchParams(window.location.search).get('section') as SectionId | null;
+  if (param && VALID_SECTIONS.includes(param)) {
+    return param;
+  }
+  return 'home';
+}
+
 export default function App() {
-  const [activeSection, setActiveSection] = useState<SectionId>('home');
+  const [activeSection, setActiveSection] = useState<SectionId>(getInitialSection);
   const [isVolunteerModalOpen, setIsVolunteerModalOpen] = useState(false);
 
   // Navegación

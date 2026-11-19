@@ -24,10 +24,11 @@ export const ArteSection: React.FC = () => {
     <div className="min-h-screen bg-[#faf8f5] text-stone-900 pb-20">
       {/* Hero Header */}
       <div className="relative bg-stone-900 text-stone-100 py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 opacity-25 pointer-events-none">
+        <div className="absolute inset-0 opacity-40 pointer-events-none">
           <img
-            src="/assets/images/mujer_pintando.jpg"
+            src="/assets/images/midjourney-arte.png"
             alt="Mujer pintando en taller de arte"
+            style={{ objectPosition: '50% 58%' }}
             className="w-full h-full object-cover"
           />
         </div>
@@ -40,7 +41,10 @@ export const ArteSection: React.FC = () => {
             El Arte como Puente hacia la Dignidad
           </h1>
           <p className="max-w-2xl mx-auto text-stone-300 text-sm sm:text-base font-light leading-relaxed">
-            A través del pincel, la arcilla y las cuerdas de una guitarra, las personas que asisten a nuestros hogares redescubren sus talentos, sanan heridas y expresan su mundo interior.
+            Lumen Cor crea su Programa de Artes Visuales,
+            con el fin de promover la expresión artística y la
+            reinserción social de personas en situación de calle
+            y alta vulnerabilidad social.
           </p>
         </div>
       </div>
@@ -55,7 +59,7 @@ export const ArteSection: React.FC = () => {
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1">
             Obras Realizadas en Nuestros Hogares
           </h2>
-          <p className="text-xs text-stone-500 mt-2 font-light">
+          <p className="text-s text-stone-500 mt-2 font-light">
             Cada obra refleja una historia de superación. Al colaborar adquiriendo una pieza, financiás los materiales del taller y apoyás directamente a sus autores.
           </p>
         </div>
@@ -93,16 +97,15 @@ export const ArteSection: React.FC = () => {
                   >
                     {art.title}
                   </h3>
-                  <p className="text-xs text-stone-500 font-medium">Por {art.artist} ({art.year})</p>
+                  <p className="text-xs text-stone-500 font-medium">Por {art.artistName} ({art.year})</p>
                   <p className="text-xs text-stone-600 line-clamp-2 leading-relaxed">
-                    {art.description}
+                    {art.artistStory}
                   </p>
                 </div>
               </div>
 
               <div className="p-5 pt-0 border-t border-stone-100 flex items-center justify-between mt-2">
                 <div>
-                  <span className="text-[10px] text-stone-400 uppercase font-medium block">Contribución sugerida</span>
                   <span className="font-serif text-lg font-bold text-stone-900">
                     ${art.price.toLocaleString('es-AR')}
                   </span>
@@ -121,7 +124,7 @@ export const ArteSection: React.FC = () => {
 
       {/* Banner Plantilla SectionCtaBanner para Arte */}
       <SectionCtaBanner
-        badgeText="Cultura y Talleres Solidarios"
+        badgeText="Arte LumenCor"
         badgeIcon={<Palette className="w-3.5 h-3.5" />}
         title="¿Sos artista o querés colaborar con los talleres de arte?"
         description="Sumate como tallerista voluntario o coordiná una donación de insumos de pintura, dibujo y cerámica para los hogares de LumenCor."
@@ -175,11 +178,10 @@ export const ArteSection: React.FC = () => {
                   <h3 className="font-serif text-2xl font-bold text-stone-900">
                     {selectedArtForDetail.title}
                   </h3>
-                  <p className="text-xs text-stone-500 font-medium">Autor: {selectedArtForDetail.artist} ({selectedArtForDetail.year})</p>
+                  <p className="text-xs text-stone-500 font-medium">Autor: {selectedArtForDetail.artistName} ({selectedArtForDetail.year})</p>
                   <p className="text-sm text-stone-700 leading-relaxed pt-2">
-                    {selectedArtForDetail.description}
+                    {selectedArtForDetail.artistStory}
                   </p>
-                  <p className="text-xs text-stone-400">Dimensiones: {selectedArtForDetail.dimensions}</p>
                 </div>
 
                 <div className="pt-4 border-t border-stone-200 flex items-center justify-between">
