@@ -35,10 +35,10 @@ export const ArteSection: React.FC = () => {
         <div className="relative max-w-5xl mx-auto text-center space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs tracking-widest font-cinzel uppercase">
             <Palette className="w-3.5 h-3.5" />
-            <span>Talleres de Arte e Inclusión Social</span>
+            <span>Talleres de arte e inclusión Social</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl font-semibold tracking-tight text-white">
-            El Arte como Puente hacia la Dignidad
+            El arte como puente hacia la dignidad
           </h1>
           <p className="max-w-2xl mx-auto text-stone-300 text-sm sm:text-base font-light leading-relaxed">
             Lumen Cor crea su Programa de Artes Visuales,
@@ -57,7 +57,7 @@ export const ArteSection: React.FC = () => {
             Galería Solidaria
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1">
-            Obras Realizadas en Nuestros Hogares
+            Obras realizadas en nuestros hogares
           </h2>
           <p className="text-s text-stone-500 mt-2 font-light">
             Cada obra refleja una historia de superación. Al colaborar adquiriendo una pieza, financiás los materiales del taller y apoyás directamente a sus autores.
@@ -128,7 +128,7 @@ export const ArteSection: React.FC = () => {
         badgeIcon={<Palette className="w-3.5 h-3.5" />}
         title="¿Sos artista o querés colaborar con los talleres de arte?"
         description="Sumate como tallerista voluntario o coordiná una donación de insumos de pintura, dibujo y cerámica para los hogares de LumenCor."
-        buttonText="Participar en Arte"
+        buttonText="Colaborá con nosotros"
         buttonIcon={<Palette className="w-4 h-4" />}
         onAction={() => handleOpenArtInquiry('')}
       />
@@ -140,12 +140,12 @@ export const ArteSection: React.FC = () => {
         seccion="arte"
         badgeText="Arte LumenCor"
         badgeIcon={<Palette className="w-3.5 h-3.5" />}
-        title={selectedArtTitle ? `Consulta sobre: ${selectedArtTitle}` : "Sumarme al Área de Arte"}
-        submitButtonText="Enviar Mensaje"
+        title={selectedArtTitle ? `Consulta sobre: ${selectedArtTitle}` : "Colaborá con nosotros"}
+        submitButtonText="Enviar mensaje"
         showRubroMensajeFields
         successTitle="¡Mensaje Recibido!"
         successDescription={({ name, phone, email }) =>
-          `Muchas gracias, ${name}. El equipo del Taller de Arte de LumenCor se comunicará con vos al ${phone || email} para coordinar la consulta.`
+          `Muchas gracias, ${name}. El equipo del taller de Arte de LumenCor se comunicará con vos al ${phone || email} para coordinar la consulta.`
         }
       />
 

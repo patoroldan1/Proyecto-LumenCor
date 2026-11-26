@@ -92,8 +92,6 @@ export const EditorialSection: React.FC = () => {
                       <span>{book.format}</span>
                       <span>•</span>
                       <span>{book.pages} págs</span>
-                      <span>•</span>
-                      <span>Año {book.year}</span>
                     </div>
                   </div>
                 </div>
@@ -125,13 +123,13 @@ export const EditorialSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Banner Convocatoria de Autores usando la plantilla SectionCtaBanner */}
+      {/* Banner Editorial LumenCor usando la plantilla SectionCtaBanner */}
       <SectionCtaBanner
-        badgeText="Convocatoria Abierta"
+        badgeText="Editorial LumenCor"
         badgeIcon={<Feather className="w-3.5 h-3.5" />}
-        title="¿Querés publicar tu libro con Editorial LumenCor?"
+        title="Si sos escritor y querés publicar tu libro, comunicate con nosotros"
         description="Acompañamos a autores de obras testimoniales, espiritualidad, filosofía comunitaria y ensayos sociales. Dejanos tus datos de contacto para coordinar una reunión."
-        buttonText="Presentar mi Manuscrito"
+        buttonText="Publicar en la editorial"
         buttonIcon={<Feather className="w-4 h-4" />}
         onAction={() => setIsPublishModalOpen(true)}
       />
@@ -143,10 +141,10 @@ export const EditorialSection: React.FC = () => {
         seccion="editorial"
         badgeText="Editorial LumenCor"
         badgeIcon={<Feather className="w-3.5 h-3.5" />}
-        title="Publicar con Editorial"
-        submitButtonText="Enviar Propuesta"
+        title="Publicar en la editorial"
+        submitButtonText="Enviar propuesta"
         showRubroMensajeFields
-        successTitle="¡Propuesta Recibida!"
+        successTitle="¡Propuesta recibida!"
         successDescription={({ name, phone, email }) =>
           `Recibimos tu solicitud, ${name}. Un miembro de nuestro equipo editorial se comunicará con vos al ${phone || email} para coordinar la gestión de tu proyecto literario.`
         }
@@ -194,10 +192,6 @@ export const EditorialSection: React.FC = () => {
                     <div>
                       <span className="text-stone-400 block text-[10px]">Páginas</span>
                       <span className="font-semibold text-stone-800">{selectedBookForModal.pages}</span>
-                    </div>
-                    <div>
-                      <span className="text-stone-400 block text-[10px]">Edición</span>
-                      <span className="font-semibold text-stone-800">{selectedBookForModal.year}</span>
                     </div>
                   </div>
                 </div>

@@ -321,7 +321,7 @@ export const UniversalFormModal: React.FC<UniversalFormModalProps> = ({
               <button
                 type="submit"
                 disabled={isSending}
-                className="flex-1 py-2.5 bg-stone-900 hover:bg-amber-600 disabled:bg-stone-400 text-white text-xs font-semibold rounded-xl uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5"
+                className="flex-1 py-2.5 bg-stone-900 hover:bg-amber-600 disabled:bg-stone-400 text-white text-xs font-semibold rounded-xl tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5"
               >
                 {isSending ? (
                   <>

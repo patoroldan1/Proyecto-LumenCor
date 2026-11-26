@@ -981,7 +981,7 @@ export const DonarSection: React.FC = () => {
                     - En Donación Única: Débito/Crédito (siempre con contorno rosa), Mercado Pago (celeste + ícono negro) y PayPal (amarillo) */}
                 <div className="space-y-2 pt-1">
                   <span className="block text-xs font-medium text-stone-700">
-                    Elegí tu Medio de Pago *
+                    Elegí tu medio de pago *
                   </span>
                   <div
                     className={`grid grid-cols-1 gap-2.5 text-xs ${
@@ -1075,7 +1075,7 @@ export const DonarSection: React.FC = () => {
                     <span className="font-semibold flex items-center gap-2">
                       <Wallet className="w-4 h-4 text-black" />
                       {donationFrequency === 'monthly'
-                        ? 'Suscripción Mensual con Mercado Pago'
+                        ? 'Suscripción mensual con Mercado Pago'
                         : 'Donación Única con Mercado Pago'}
                     </span>
                     <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white text-[#007EB5] border border-sky-200">
@@ -1096,7 +1096,7 @@ export const DonarSection: React.FC = () => {
                     <span className="font-semibold flex items-center gap-2">
                       <Globe className="w-4 h-4 text-[#003087]" />
                       {donationFrequency === 'monthly'
-                        ? 'Suscripción Mensual Internacional con PayPal'
+                        ? 'Suscripción mensual internacional con PayPal'
                         : 'Donación Única Internacional con PayPal'}
                     </span>
                     <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white text-[#003087] border border-amber-300">
@@ -1256,12 +1256,7 @@ export const DonarSection: React.FC = () => {
                 </ul>
               </div>
 
-              <blockquote className="bg-white/75 border-l-4 border-rose-500 rounded-r-xl p-4 text-xs italic text-stone-700 leading-relaxed">
-                «No se trata solo de dar lo que sobra, sino de compartir la mesa y la esperanza. Gracias por ser parte de LumenCor.»
-                <footer className="mt-1.5 not-italic font-semibold text-stone-900 text-[11px]">
-                  — Equipo y Voluntarios de Fundación LumenCor
-                </footer>
-              </blockquote>
+              
             </div>
           </aside>
         </div>

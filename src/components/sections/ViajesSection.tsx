@@ -54,7 +54,7 @@ export const ViajesSection: React.FC = () => {
             <span>Viaja Con Nosotros</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl font-semibold tracking-tight text-white">
-            Peregrinaciones a Todo el Mundo
+            Peregrinaciones a todo el mundo
           </h1>
           <p className="max-w-2xl mx-auto text-stone-300 text-sm sm:text-base font-light leading-relaxed">
             Viajar como peregrinos, no como meros turistas: con el corazón abierto al asombro, la fraternidad compartida y el compromiso solidario.
@@ -74,7 +74,7 @@ export const ViajesSection: React.FC = () => {
                   }
                 `}
               >
-                Próximas Peregrinaciones ({upcomingList.length})
+                Próximas peregrinaciones ({upcomingList.length})
               </button>
               <button
                 onClick={() => setActiveTab('completed')}
@@ -210,7 +210,7 @@ export const ViajesSection: React.FC = () => {
                   {trip.testimonies && trip.testimonies.length > 0 && (
                     <div className="space-y-3 pt-4 border-t border-stone-100">
                       <h4 className="text-xs font-cinzel uppercase font-semibold text-stone-500 tracking-wider">
-                        Testimonios de Peregrinos
+                        Testimonios de peregrinos
                       </h4>
                       <div className="space-y-3">
                         {trip.testimonies.map((test, idx) => (

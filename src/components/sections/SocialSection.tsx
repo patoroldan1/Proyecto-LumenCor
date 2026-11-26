@@ -14,6 +14,7 @@ import {
   Quote,
   Users,
 } from 'lucide-react';
+import { BreakfastMapSection } from '../social/BreakfastMapSection.tsx';
 
 interface SocialSectionProps {
   onOpenVolunteerModal?: () => void;
@@ -300,7 +301,7 @@ export const SocialSection: React.FC<SocialSectionProps> = ({ onOpenVolunteerMod
           </div>
 
           <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
-            Acompañamiento y Dignidad en Situación de Calle
+            Acompañamiento y dignidad en situación de calle
           </h1>
 
           <p className="max-w-2xl mx-auto text-stone-200 text-sm sm:text-base font-light leading-relaxed">
@@ -320,8 +321,21 @@ export const SocialSection: React.FC<SocialSectionProps> = ({ onOpenVolunteerMod
         </div>
       </div>
 
+
+      {/* PRIMERO EN EL CONTENIDO PRINCIPAL: MAPA DE DESAYUNOS, DÍAS, HORARIOS Y FOTOS */}
+<BreakfastMapSection onOpenVolunteerModal={onOpenVolunteerModal} />
+
+
       {/* MURAL COLLAGE - BENTO / MASONRY GRID CON ESTÉTICA ORGÁNICA */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16 overflow-x-hidden">
+        <div className="mb-8 space-y-1">
+  <span className="text-xs font-cinzel font-semibold text-amber-800 tracking-wider">
+    Archivo solidario
+  </span>
+  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
+    Recuerdos de nuestras rondas y talleres
+  </h2>
+</div>
         <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
           {photos.map((photo, index) => {
             return (

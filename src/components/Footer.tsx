@@ -31,20 +31,17 @@ export const Footer: React.FC<FooterProps> = ({ onSelectSection }) => {
           {/* Col 3: Contact */}
           <div className="space-y-3">
             <h4 className="font-cinzel text-xs font-semibold uppercase tracking-wider text-amber-400">
-              Sede y Contacto
+              Contacto
             </h4>
             <div className="space-y-2 text-stone-400">
-              <p className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-stone-500 flex-none mt-0.5" />
-                <span>Av. Independencia 2450, Ciudad de Buenos Aires</span>
-              </p>
+              
               <p className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-stone-500 flex-none" />
-                <span>+54 11 4308-9920</span>
+                <span>+54 9 11 6538-6539</span>
               </p>
               <p className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-stone-500 flex-none" />
-                <span>contacto@lumencor.org</span>
+                <span>fundacion@lumencor.org</span>
               </p>
             </div>
           </div>

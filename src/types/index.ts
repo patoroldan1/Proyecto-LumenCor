@@ -18,15 +18,20 @@ export interface SectionMeta {
 export interface Book {
   id: string;
   title: string;
+  subtitle?: string;
   author: string;
   price: number;
   coverImage: string;
   synopsis: string;
-  category: 'Espiritualidad' | 'Crónicas y Testimonios' | 'Filosofía' | 'Arte y Solidaridad';
+  category: string;
   pages: number;
-  year: number;
-  format: 'Tapa Blanda' | 'Edición Especial' | 'Digital / eBook';
-  stock: number;
+  isbn: string;
+  dimensions: string;
+  publisher: string;
+  format: string;
+  extras?: string;
+  year?: number;
+  stock?: number;
   featured?: boolean;
   mercadoLibreUrl?: string;
 }

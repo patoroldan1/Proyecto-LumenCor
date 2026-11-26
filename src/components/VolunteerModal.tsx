@@ -20,7 +20,7 @@ export const VolunteerModal: React.FC<VolunteerModalProps> = ({ isOpen, onClose 
       seccion="social"
       badgeText="Sumate a LumenCor"
       badgeIcon={<Users className="w-3.5 h-3.5" />}
-      title="Sumate a Nuestra Misión"
+      title="Sumate a nuestra misión"
       submitButtonText="Postularme"
       initialExtraData={{
         profesion: 'Voluntario General (Acompañamiento, Viandas y Tareas Básicas)',

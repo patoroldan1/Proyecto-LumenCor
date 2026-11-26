@@ -52,7 +52,7 @@ export const MediosSection: React.FC = () => {
             <span>Prensa, Testimonios y Comunicación</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl font-semibold tracking-tight text-white">
-            La Realidad de la Calle en Primera Persona
+            La realidad de la calle en primera persona
           </h1>
           <p className="max-w-2xl mx-auto text-stone-300 text-sm sm:text-base font-light leading-relaxed">
             Historias que rompen la indiferencia. Notas periodísticas, entrevistas radiales y documentales que visibilizan el trabajo silencioso por los más vulnerables.
@@ -68,7 +68,7 @@ export const MediosSection: React.FC = () => {
             Apariciones en Medios
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1">
-            Coberturas y Entrevistas Destacadas
+            Coberturas y entrevistas destacadas
           </h2>
         </div>
 
@@ -145,7 +145,7 @@ export const MediosSection: React.FC = () => {
         badgeText="Prensa LumenCor"
         badgeIcon={<Tv className="w-3.5 h-3.5" />}
         title="Contacto para Medios y Prensa"
-        submitButtonText="Enviar Consulta"
+        submitButtonText="Enviar consulta"
         showRubroMensajeFields
         successTitle="¡Solicitud de Prensa Recibida!"
         successDescription={({ name, phone, email }) =>

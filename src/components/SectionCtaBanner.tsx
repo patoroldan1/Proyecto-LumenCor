@@ -45,7 +45,7 @@ export const SectionCtaBanner: React.FC<SectionCtaBannerProps> = ({
         <div className="z-10 flex-none">
           <button
             onClick={onAction}
-            className="px-6 py-3.5 bg-amber-500 hover:bg-amber-400 active:scale-95 text-stone-950 font-cinzel text-xs font-bold uppercase tracking-wider rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 cursor-pointer flex items-center gap-2"
+            className="px-6 py-3.5 bg-amber-500 hover:bg-amber-400 active:scale-95 text-stone-950 font-sans text-xs font-bold tracking-wide rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 cursor-pointer flex items-center gap-2"
           >
             {buttonIcon}
             <span>{buttonText}</span>
